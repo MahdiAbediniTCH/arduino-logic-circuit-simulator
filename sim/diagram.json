@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "author": "Mahdi Abedini",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 163.8, "left": -0.6, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": 6, "left": 61.4, "attrs": { "color": "red" } },
+    { "type": "wokwi-dip-switch-8", "id": "sw1", "top": 35.1, "left": 212.7, "attrs": {} }
+  ],
+  "connections": [
+    [ "led1:A", "uno:13", "green", [ "v28.8", "h38" ] ],
+    [ "led1:C", "uno:GND.1", "black", [ "v67.2", "h38.5" ] ],
+    [ "sw1:1a", "uno:2", "green", [ "v28.8", "h43.9" ] ],
+    [ "sw1:1b", "uno:GND.1", "black", [ "h-48", "v86.7", "h-57.9" ] ]
+  ],
+  "dependencies": {}
+}
