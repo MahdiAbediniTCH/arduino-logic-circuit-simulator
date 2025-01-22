@@ -31,6 +31,10 @@ void loop()
     bool s = (outputState >> i) & 1;
     setOutput(i, s);
   }
+  if (Serial.readBytesUntil('a', buffer, 50))
+    Serial.println(buffer);
+  Serial.setTimeout(50);
+
 }
 
 unsigned getInputState() {
