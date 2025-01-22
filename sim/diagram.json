@@ -6,10 +6,10 @@
     { "type": "wokwi-breadboard-half", "id": "bb1", "top": -89.4, "left": -64.4, "attrs": {} },
     { "type": "wokwi-arduino-uno", "id": "uno", "top": 125.4, "left": -29.4, "attrs": {} },
     { "type": "wokwi-dip-switch-8", "id": "sw1", "top": -3.3, "left": 135.9, "attrs": {} },
-    { "type": "wokwi-led", "id": "led1", "top": 6, "left": 32.6, "attrs": { "color": "cyan" } },
-    { "type": "wokwi-led", "id": "led2", "top": 6, "left": 13.4, "attrs": { "color": "cyan" } },
-    { "type": "wokwi-led", "id": "led3", "top": 6, "left": 51.8, "attrs": { "color": "cyan" } },
-    { "type": "wokwi-led", "id": "led4", "top": 6, "left": 71, "attrs": { "color": "cyan" } }
+    { "type": "wokwi-led", "id": "led1", "top": 6, "left": 32.6, "attrs": { "color": "green" } },
+    { "type": "wokwi-led", "id": "led2", "top": 6, "left": 13.4, "attrs": { "color": "green" } },
+    { "type": "wokwi-led", "id": "led3", "top": 6, "left": 51.8, "attrs": { "color": "green" } },
+    { "type": "wokwi-led", "id": "led4", "top": 6, "left": 71, "attrs": { "color": "green" } }
   ],
   "connections": [
     [ "bb1:tn.16", "bb1:20t.a", "black", [ "v0" ] ],
