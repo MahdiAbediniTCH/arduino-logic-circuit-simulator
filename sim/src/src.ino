@@ -22,16 +22,28 @@ void setup() {
   }
 }
 
-void loop() {
-  unsigned inputState = 0;
-  for (byte i = 0; i < switchCount; i++) {
-    unsigned s = digitalRead(switchPins[i]) << i;
-    inputState |= s;
-  }
-  unsigned outputState = circuit[inputState];
+
+void loop()
+{
+  unsigned inputState = getInputState();
+  unsigned outputState = getOutputState(inputState);
   for (byte i = 0; i < ledCount; i++) {
     bool s = (outputState >> i) & 1;
-    digitalWrite(ledPins[i], s);
+    setOutput(i, s);
   }
+}
 
+unsigned getInputState() {
+  unsigned state = 0;
+  for (byte i = 0; i < switchCount; i++) {
+    unsigned s = digitalRead(switchPins[i]) << i;
+    state |= s;
+  }
+  return state;
+}
+unsigned getOutputState(unsigned inputState) {
+  return circuit[inputState];
+}
+void setOutput(byte index, bool value) {
+  digitalWrite(ledPins[index], value);
 }
