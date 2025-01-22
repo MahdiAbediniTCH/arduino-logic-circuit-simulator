@@ -9,10 +9,20 @@ const byte switchPins[] = {2, 3, 4, 5, 6, 7, 8, 9};
 
 unsigned circuit[STATE_COUNT] = {0b1101}; // sample circuit: 00000000 -> 1101
 
-char buffer[200];
+char buffer[1024];
+
+byte hexToByte(char hex) {
+  byte val = hex - '0';
+  if (val > 9) 
+    val = hex - 'a' + 10;
+  if (val < 0 || val > 15)
+    val = 0b01010101; // error indicator
+  return val;
+}
 
 void setup() {
   Serial.begin(9600);
+  Serial.setTimeout(50);
   // initialize the LED pins and switches
   for (byte i = 0; i < switchCount; i++) {
     pinMode(switchPins[i], INPUT_PULLUP);
@@ -31,9 +41,11 @@ void loop()
     bool s = (outputState >> i) & 1;
     setOutput(i, s);
   }
-  if (Serial.readBytesUntil('a', buffer, 50))
-    Serial.println(buffer);
-  Serial.setTimeout(50);
+  if (Serial.readBytes(buffer, STATE_COUNT)) {
+    for (unsigned i = 0; i < STATE_COUNT; i++) {
+      circuit[i] = hexToByte(buffer[i]);
+    }
+  }
 
 }
 
