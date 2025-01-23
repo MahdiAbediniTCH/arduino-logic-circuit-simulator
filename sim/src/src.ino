@@ -7,7 +7,7 @@ const byte ledPins[] = {10, 11, 12, 13};
 const byte switchCount = INPUT_COUNT;
 const byte switchPins[] = {2, 3, 4, 5, 6, 7, 8, 9};
 
-unsigned circuit[STATE_COUNT] = {0b1101}; // sample circuit: 00000000 -> 1101
+byte circuit[STATE_COUNT] = {0b1101}; // sample circuit: 00000000 -> 1101
 
 char buffer[1024];
 
