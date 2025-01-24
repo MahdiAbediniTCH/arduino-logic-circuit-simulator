@@ -1,0 +1,72 @@
+#Username {
+    -fx-text-fill: #0b4d82;
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 14px;
+}
+
+TextField {
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: white;
+    -fx-prompt-text-fill: rgba(1, 171, 220, 0.5);
+    -fx-text-fill: #2b61d1;
+    -fx-background-radius: 5 5 5 5;
+    -fx-alignment: center;
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+PasswordField {
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: white;
+    -fx-prompt-text-fill: rgba(1, 171, 220, 0.5);
+    -fx-text-fill: #2b61d1;
+    -fx-background-radius: 5 5 5 5;
+    -fx-alignment: center;
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+Button {
+    -fx-border-color: gray;
+    -fx-border-width: 1;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: black;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+Button:hover {
+    -fx-background-color: #b0acac;
+}
+
+Alert {
+    -fx-border-color: lightgray;
+    -fx-border-width: 1;
+    -fx-background-color: transparent;
+    -fx-text-fill: olive;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+CheckBox {
+    -fx-border-color: gray;
+    -fx-border-width: 1;
+    -fx-background-color: Transparent;
+    -fx-text-fill: black;
+    -fx-background-radius: 3;
+    -fx-border-radius: 3;
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-fit-to-width: 50px;
+}

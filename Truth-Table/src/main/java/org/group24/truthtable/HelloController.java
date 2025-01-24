@@ -1,14 +1,21 @@
 package org.group24.truthtable;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 
 public class HelloController {
     @FXML
-    private Label welcomeText;
-
+    Button addTable;
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application! now go home.");
+    Button currentTable;
+    @FXML
+    Button export;
+
+    public void goToAddTableMenu() {
+        System.out.println("Add Table Menu");
+    }
+
+    public void goToCurrentTableMenu() {
+        System.out.println("Current Table Menu");
     }
 }
