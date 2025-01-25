@@ -1,7 +1,23 @@
-#Username {
-    -fx-text-fill: #0b4d82;
-    -fx-font-family: "Comic Sans MS";
-    -fx-font-size: 14px;
+#Logic-Circuit-Simulator {
+    -fx-text-fill: black;
+    -fx-font-family: "Roboto Slab SemiBold";
+    -fx-font-size: 24px;
+    -fx-font-weight: bolder;
+}
+
+.header {
+    -fx-text-fill: #000000;
+    -fx-font-family: "Roboto Slab SemiBold";
+    -fx-font-size: 18px;
+    -fx-font-weight: bolder;
+}
+
+Label {
+    -fx-text-fill: #000000;
+    -fx-font-family: "Roboto Slab SemiBold";
+    -fx-font-size: 12px;
+    -fx-font-weight: bolder;
+    -fx-label-padding: 5px;
 }
 
 TextField {
@@ -58,7 +74,7 @@ Alert {
 }
 
 CheckBox {
-    -fx-border-color: gray;
+    -fx-border-color: transparent;
     -fx-border-width: 1;
     -fx-background-color: Transparent;
     -fx-text-fill: black;

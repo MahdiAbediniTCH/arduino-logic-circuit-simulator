@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane maxHeight="340.0" maxWidth="594.0" minHeight="340.0" minWidth="594.0" prefHeight="340.0" prefWidth="594.0" stylesheets="@../CSS/Style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.group24.truthtable.NewTable">
+   <children>
+      <ImageView fitHeight="340.0" fitWidth="595.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/addTableMenu.jpg" />
+         </image>
+      </ImageView>
+      <HBox alignment="CENTER" layoutX="8.0" layoutY="78.0" prefHeight="78.0" prefWidth="584.0" spacing="10.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="94.0" text="Inputs:" />
+            <VBox alignment="CENTER" prefHeight="70.0" prefWidth="393.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="66.0" prefWidth="320.0" spacing="10.0">
+                     <children>
+                        <CheckBox mnemonicParsing="false" text="A0" />
+                        <CheckBox mnemonicParsing="false" text="A1" />
+                        <CheckBox mnemonicParsing="false" text="A2" />
+                        <CheckBox mnemonicParsing="false" text="A3" />
+                        <CheckBox mnemonicParsing="false" text="A4" />
+                        <CheckBox mnemonicParsing="false" text="A5" />
+                        <CheckBox mnemonicParsing="false" text="A6" />
+                        <CheckBox mnemonicParsing="false" text="A7" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="65.0" prefWidth="394.0" spacing="30.0">
+                     <children>
+                        <CheckBox mnemonicParsing="false" text="C0" />
+                        <CheckBox mnemonicParsing="false" text="C1" />
+                        <CheckBox mnemonicParsing="false" text="C2" />
+                        <CheckBox mnemonicParsing="false" text="C3" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="33.0" layoutY="172.0" prefHeight="78.0" prefWidth="534.0" spacing="10.0">
+         <children>
+            <Label text="Outputs:" />
+            <CheckBox mnemonicParsing="false" text="LED0" />
+            <CheckBox mnemonicParsing="false" text="LED1" />
+            <CheckBox mnemonicParsing="false" text="LED2" />
+            <CheckBox mnemonicParsing="false" text="LED3" />
+            <CheckBox mnemonicParsing="false" text="C0" />
+            <CheckBox mnemonicParsing="false" text="C1" />
+            <CheckBox mnemonicParsing="false" text="C2" />
+            <CheckBox mnemonicParsing="false" text="C3" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="200.0" layoutY="269.0" prefHeight="54.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <Button mnemonicParsing="false" onMouseClicked="#backToMainMenu" text="Back" />
+            <Button mnemonicParsing="false" onMouseClicked="#reset" text="Reset" />
+            <Button mnemonicParsing="false" onMouseClicked="#addTable" text="Add" />
+         </children>
+      </HBox>
+      <Label alignment="CENTER" layoutX="138.0" layoutY="22.0" prefHeight="40.0" prefWidth="324.0" styleClass="header" text="Choose inputs and outputs here">
+         <effect>
+            <DropShadow>
+               <input>
+                  <Blend />
+               </input>
+               <color>
+                  <Color red="1.0" green="0.47777777910232544" blue="0.47777777910232544" />
+               </color>
+            </DropShadow>
+         </effect></Label>
+   </children>
+</AnchorPane>
