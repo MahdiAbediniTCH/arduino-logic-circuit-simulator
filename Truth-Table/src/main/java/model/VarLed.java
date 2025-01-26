@@ -32,6 +32,7 @@ public class VarLed {
     public void setStatus(int stat, int place) {
         this.status[place] = stat;
     }
+
     public int getStatus(int place) {
         return this.status[place];
     }
