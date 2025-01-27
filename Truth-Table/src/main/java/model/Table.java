@@ -32,6 +32,10 @@ public class Table {
         return allTables.get(i);
     }
 
+    public static void removeFromAllTables (int i) {
+        allTables.remove(i);
+    }
+
     public static boolean createTable(ArrayList<Integer> switchNumbers, ArrayList<Integer> varNumbers, ArrayList<VarLed> outputs) {
         for (VarLed varLed : outputs)
             if (varLed.getOutputIn() != -1)

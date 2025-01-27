@@ -1,19 +1,14 @@
 package controller;
 
-import javafx.scene.control.Tab;
 import model.Circ;
 import model.Table;
 import model.VarLed;
 import org.group24.truthtable.App;
-import org.group24.truthtable.ApplicationRunner;
 
 import java.io.*;
 import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class CircController {
@@ -40,15 +35,15 @@ public class CircController {
                 //TODO : see which element in the array should I check and fill the status for varLed
                 int sum = 0;
                 int bit;
-                for(int num : switchNums) {
-                    bit = (i >> (8-num)) % 2;
+                for (int num : switchNums) {
+                    bit = (i >> (8 - num)) % 2;
                     sum = sum * 2 + bit;
                 }
-                for(int num : varNums) {
+                for (int num : varNums) {
                     bit = Circ.getVar(i).getStatus(i);
                     sum = sum * 2 + bit;
                 }
-                varLed.setStatus(pseudoStatus[sum],i);
+                varLed.setStatus(pseudoStatus[sum], i);
             }
         }
     }

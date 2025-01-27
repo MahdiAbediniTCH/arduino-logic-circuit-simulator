@@ -1,15 +1,22 @@
 package org.group24.truthtable;
 
+import controller.TableController;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import model.Table;
 import model.VarLed;
@@ -46,8 +53,6 @@ public class ShowTable extends Application {
         int numberOfSwitches = Table.getFromAllTables(tableNumber).getSwitchNumbers().size();
         int numberOfVars = Table.getFromAllTables(tableNumber).getVarNumbers().size();
         int numberOfOutputs = Table.getFromAllTables(tableNumber).getOutputs().size();
-        int numberOfColumns = numberOfSwitches + numberOfVars +
-                Table.getFromAllTables(tableNumber).getOutputs().size();
         table = new GridPane();
         table.setAlignment(Pos.CENTER);
         Label label;
@@ -55,12 +60,14 @@ public class ShowTable extends Application {
             label = new Label("A" + Table.getFromAllTables(tableNumber).getSwitchNumbers().get(i));
             GridPane.setRowIndex(label, 0);
             GridPane.setColumnIndex(label, i);
+            label.setAlignment(Pos.CENTER);
             table.getChildren().add(label);
         }
         for (int i = 0; i < numberOfVars; i++) {
             label = new Label("C" + Table.getFromAllTables(tableNumber).getVarNumbers().get(i));
             GridPane.setRowIndex(label, 0);
             GridPane.setColumnIndex(label, i + numberOfSwitches);
+            label.setAlignment(Pos.CENTER);
             table.getChildren().add(label);
         }
         VarLed varled;
@@ -70,9 +77,63 @@ public class ShowTable extends Application {
             else label = new Label("C" + varled.NUMBER);
             GridPane.setRowIndex(label, 0);
             GridPane.setColumnIndex(label, i + numberOfSwitches + numberOfVars);
+            label.setAlignment(Pos.CENTER);
             table.getChildren().add(label);
         }
-
+        int[] binaryForm;
+        for (int i = 0; i < (1 << (numberOfSwitches + numberOfVars)); i++) {
+            binaryForm = TableController.convertToBinary(i, numberOfSwitches + numberOfVars);
+            for (int j = 0; j < numberOfSwitches + numberOfVars; j++) {
+                label = new Label(Integer.toString(binaryForm[j]));
+                GridPane.setRowIndex(label, i + 1);
+                GridPane.setColumnIndex(label, j);
+                label.setAlignment(Pos.CENTER);
+                table.getChildren().add(label);
+            }
+            for (int j = 0; j < numberOfOutputs; j++) {
+                varled = Table.getFromAllTables(tableNumber).getOutputs().get(j);
+                int number = Table.getFromAllTables(tableNumber).getOutPutStatus(varled)[i];
+                label = new Label(Integer.toString(number));
+                GridPane.setRowIndex(label, i + 1);
+                GridPane.setColumnIndex(label, j + numberOfSwitches + numberOfVars);
+                table.getChildren().add(label);
+                final Label finalLabel = label;
+                final VarLed finalVarled = varled;
+                final int finalI = i;
+                label.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        finalLabel.setText(Integer.toString(1 - Integer.parseInt(finalLabel.getText())));
+                        Table.getFromAllTables(tableNumber).changeState(finalVarled, finalI);
+                    }
+                });
+                label.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        finalLabel.setBackground(Background.fill(Color.GRAY));
+                    }
+                });
+                label.setOnMouseExited(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        finalLabel.setBackground(Background.fill(Color.TRANSPARENT));
+                    }
+                });
+            }
+        }
         basePane.getChildren().add(table);
+        Button backButton = new Button("Back");
+        backButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                ExistingTables existingTable = new ExistingTables();
+                try {
+                    existingTable.start(App.getStage());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        basePane.getChildren().add(backButton);
     }
 }

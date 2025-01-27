@@ -52,4 +52,12 @@ public class Circ {
         }
         return variables.get(i);
     }
+
+    public static void resetAllEvals() {
+        for(VarLed varLed : leds)
+            varLed.setEvaluated(false);
+        for(VarLed varLed : variables)
+            varLed.setEvaluated(false);
+    }
+
 }

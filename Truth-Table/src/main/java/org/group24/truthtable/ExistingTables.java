@@ -1,15 +1,18 @@
 package org.group24.truthtable;
 
+import controller.TableController;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import model.Circ;
 import model.Table;
 
 public class ExistingTables extends Application {
@@ -55,6 +58,25 @@ public class ExistingTables extends Application {
                         showTable.start(App.getStage());
                     } catch (Exception e) {
                         throw new RuntimeException(e);
+                    }
+                }
+            });
+            removeButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Confirmation");
+                    alert.setContentText("Are you sure?");
+                    alert.showAndWait();
+                    if (!alert.getResult().getButtonData().isCancelButton()) {
+                        TableController.removeTable(finalI);
+                        Circ.resetAllEvals();
+                        ExistingTables existingTables = new ExistingTables();
+                        try {
+                            existingTables.start(App.getStage());
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
             });
