@@ -4,10 +4,16 @@ import javafx.scene.control.Tab;
 import model.Circ;
 import model.Table;
 import model.VarLed;
+import org.group24.truthtable.App;
+import org.group24.truthtable.ApplicationRunner;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class CircController {
@@ -42,18 +48,57 @@ public class CircController {
     }
 
     public void writeInFile() {
-        prepareLEDs();
-        //TODO : open the data.bin and write the proper data
+//        prepareLEDs();
+        // TODO : generate proper hex string for data.bin
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 64; i++) {
+            sb.append("1234");  // Sample data
+        }
+        String str = sb.toString();
+        byte[] byteArray = str.getBytes();
+        URL url = App.class.getResource("serial/data.bin");
+        assert url != null;
+        File dat = new File(url.getFile());
+        try (FileOutputStream fos = new FileOutputStream(dat)) {
+            fos.write(byteArray);
+            fos.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    public void runPyProgram() {
-        // TODO: find how many \\.. s should be put in the string below!!!!!
-        String pyPath = "..\\..\\..\\..\\..\\serial\\serial_write.py";
-        String interpreter = "python";
-        ProcessBuilder builder = new ProcessBuilder(interpreter, pyPath);
-        try {
-            Process process = builder.start();
-        } catch (Exception e) {
-            System.out.println("an error!");
+    public void sendThroughSerial() throws IOException, InterruptedException {
+        URL url = App.class.getResource("serial/serial_write.py");
+        URL dir_url = App.class.getResource("serial");
+        ProcessBuilder processBuilder = new ProcessBuilder("python", url.getFile().substring(1));
+        File dir = new File(dir_url.getFile());
+        processBuilder.directory(dir);
+        processBuilder.redirectErrorStream(true);
+        Process process = processBuilder.start();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            System.out.println(line);
+        }
+        int exitCode = process.waitFor();
+    }
+
+    public static void main(String[] args) throws IOException, InterruptedException {
+        // Test function. remove if not needed:
+        CircController c = new CircController();
+        c.writeInFile();
+        c.sendThroughSerial();
+    }
+
+    private static void TEST_DATA() { // Test function. remove if not needed
+        URL url = App.class.getResource("serial/data.bin");
+        String filePath = url.getFile();
+
+        try (FileInputStream fileInputStream = new FileInputStream(filePath)) {
+            byte[] data = fileInputStream.readAllBytes();
+            String fileContent = new String(data);
+            System.out.println(fileContent);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
