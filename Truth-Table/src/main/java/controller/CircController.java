@@ -5,6 +5,8 @@ import model.Circ;
 import model.Table;
 import model.VarLed;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -28,6 +30,8 @@ public class CircController {
             }
             for(int i =0; i < Circ.STATE_NUM; i ++) {
                 //TODO : see which element in the array should I check and fill the status for varLed
+                int sum = 0;
+                
             }
         }
     }
@@ -40,5 +44,16 @@ public class CircController {
     public void writeInFile() {
         prepareLEDs();
         //TODO : open the data.bin and write the proper data
+    }
+    public void runPyProgram() {
+        // TODO: find how many \\.. s should be put in the string below!!!!!
+        String pyPath = "..\\..\\..\\..\\..\\serial\\serial_write.py";
+        String interpreter = "python";
+        ProcessBuilder builder = new ProcessBuilder(interpreter, pyPath);
+        try {
+            Process process = builder.start();
+        } catch (Exception e) {
+            System.out.println("an error!");
+        }
     }
 }
