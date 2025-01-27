@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Table;
 
 public class MainMenu extends Application {
     @Override
@@ -23,5 +24,6 @@ public class MainMenu extends Application {
 
     public void goToCurrentTableMenu() {
         System.out.println("Current Table Menu");
+        System.out.println(Table.getTableNum());
     }
 }

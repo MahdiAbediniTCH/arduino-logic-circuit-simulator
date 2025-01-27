@@ -20,22 +20,22 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="66.0" prefWidth="320.0" spacing="10.0">
                      <children>
-                        <CheckBox mnemonicParsing="false" text="A0" />
-                        <CheckBox mnemonicParsing="false" text="A1" />
-                        <CheckBox mnemonicParsing="false" text="A2" />
-                        <CheckBox mnemonicParsing="false" text="A3" />
-                        <CheckBox mnemonicParsing="false" text="A4" />
-                        <CheckBox mnemonicParsing="false" text="A5" />
-                        <CheckBox mnemonicParsing="false" text="A6" />
-                        <CheckBox mnemonicParsing="false" text="A7" />
+                        <CheckBox mnemonicParsing="false" text="A0" fx:id="input0" />
+                        <CheckBox mnemonicParsing="false" text="A1" fx:id="input1" />
+                        <CheckBox mnemonicParsing="false" text="A2" fx:id="input2" />
+                        <CheckBox mnemonicParsing="false" text="A3" fx:id="input3" />
+                        <CheckBox mnemonicParsing="false" text="A4" fx:id="input4" />
+                        <CheckBox mnemonicParsing="false" text="A5" fx:id="input5" />
+                        <CheckBox mnemonicParsing="false" text="A6" fx:id="input6" />
+                        <CheckBox mnemonicParsing="false" text="A7" fx:id="input7" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="65.0" prefWidth="394.0" spacing="30.0">
                      <children>
-                        <CheckBox mnemonicParsing="false" text="C0" />
-                        <CheckBox mnemonicParsing="false" text="C1" />
-                        <CheckBox mnemonicParsing="false" text="C2" />
-                        <CheckBox mnemonicParsing="false" text="C3" />
+                        <CheckBox mnemonicParsing="false" text="C0" fx:id="varIn0" />
+                        <CheckBox mnemonicParsing="false" text="C1" fx:id="varIn1" />
+                        <CheckBox mnemonicParsing="false" text="C2" fx:id="varIn2" />
+                        <CheckBox mnemonicParsing="false" text="C3" fx:id="varIn3" />
                      </children>
                   </HBox>
                </children>
@@ -45,14 +45,14 @@
       <HBox alignment="CENTER" layoutX="33.0" layoutY="172.0" prefHeight="78.0" prefWidth="534.0" spacing="10.0">
          <children>
             <Label text="Outputs:" />
-            <CheckBox mnemonicParsing="false" text="LED0" />
-            <CheckBox mnemonicParsing="false" text="LED1" />
-            <CheckBox mnemonicParsing="false" text="LED2" />
-            <CheckBox mnemonicParsing="false" text="LED3" />
-            <CheckBox mnemonicParsing="false" text="C0" />
-            <CheckBox mnemonicParsing="false" text="C1" />
-            <CheckBox mnemonicParsing="false" text="C2" />
-            <CheckBox mnemonicParsing="false" text="C3" />
+            <CheckBox mnemonicParsing="false" text="LED0" fx:id="LED0"/>
+            <CheckBox mnemonicParsing="false" text="LED1" fx:id="LED1"/>
+            <CheckBox mnemonicParsing="false" text="LED2" fx:id="LED2"/>
+            <CheckBox mnemonicParsing="false" text="LED3" fx:id="LED3"/>
+            <CheckBox mnemonicParsing="false" text="C0" fx:id="varOut0" />
+            <CheckBox mnemonicParsing="false" text="C1" fx:id="varOut1" />
+            <CheckBox mnemonicParsing="false" text="C2" fx:id="varOut2" />
+            <CheckBox mnemonicParsing="false" text="C3" fx:id="varOut3" />
          </children>
       </HBox>
       <HBox alignment="CENTER" layoutX="200.0" layoutY="269.0" prefHeight="54.0" prefWidth="200.0" spacing="10.0">

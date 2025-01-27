@@ -32,7 +32,7 @@ public class Table {
         return allTables.get(i);
     }
 
-    public boolean createTable(ArrayList<Integer> switchNumbers, ArrayList<Integer> varNumbers, ArrayList<VarLed> outputs) {
+    public static boolean createTable(ArrayList<Integer> switchNumbers, ArrayList<Integer> varNumbers, ArrayList<VarLed> outputs) {
         for (VarLed varLed : outputs)
             if (varLed.getOutputIn() != -1)
                 return false;
@@ -64,5 +64,9 @@ public class Table {
             return;
         }
         outputStats.get(varLed)[place] = 1 - outputStats.get(varLed)[place];
+    }
+
+    public static int getTableNum() {
+        return allTables.size();
     }
 }

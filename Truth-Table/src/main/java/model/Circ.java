@@ -9,10 +9,10 @@ public class Circ {
     public static final int LEDNUM = 4;
     private static int defaultLed = 0;
     private static int defaultVariable = 0;
-    private static ArrayList<VarLed> leds;
-    private static ArrayList<VarLed> variables;
+    private static ArrayList<VarLed> leds = new ArrayList<>();
+    private static ArrayList<VarLed> variables = new ArrayList<>();
 
-    public static void initializeCirc() {
+    static {
         for (int i = 0; i < LEDNUM; i++) {
             leds.add(new VarLed(true));
         }
