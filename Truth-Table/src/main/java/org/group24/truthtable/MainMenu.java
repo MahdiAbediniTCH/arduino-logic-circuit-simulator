@@ -18,12 +18,13 @@ public class MainMenu extends Application {
     }
 
     public void goToAddTableMenu() throws Exception {
-        NewTable newTable = new NewTable();
-        newTable.start(App.getStage());
+        AddTable addTable = new AddTable();
+        addTable.start(App.getStage());
     }
 
-    public void goToCurrentTableMenu() {
-        System.out.println("Current Table Menu");
+    public void goToExistingTablesMenu() throws Exception {
+        ExistingTables existingTables = new ExistingTables();
+        existingTables.start(App.getStage());
         System.out.println(Table.getTableNum());
     }
 }

@@ -27,7 +27,7 @@
     <VBox alignment="CENTER" layoutX="110.0" layoutY="210.0" prefHeight="243.0" prefWidth="179.0" spacing="40.0">
         <children>
             <Button fx:id="addTable" mnemonicParsing="false" onMouseClicked="#goToAddTableMenu" text="Add Table" />
-            <Button fx:id="currentTable" mnemonicParsing="false" onMouseClicked="#goToCurrentTableMenu" text="Current Tables" />
+            <Button fx:id="currentTable" mnemonicParsing="false" onMouseClicked="#goToExistingTablesMenu" text="Existing Tables" />
             <Button fx:id="export" mnemonicParsing="false" text="Export" />
         </children>
     </VBox>

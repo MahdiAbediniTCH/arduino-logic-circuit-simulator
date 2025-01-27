@@ -2,11 +2,13 @@ package model;
 
 public class VarLed {
     private boolean isEvaluated = false;
+    public final int NUMBER;
     private int OutputIn = -1;
     public final boolean IS_LED;
 
-    public VarLed(boolean IS_LED) {
+    public VarLed(boolean IS_LED, int NUMBER) {
         this.IS_LED = IS_LED;
+        this.NUMBER = NUMBER;
     }
 
     // if outputIn == -1 , then our VarLed is not output in any table, else VarLed is equal to the table number that

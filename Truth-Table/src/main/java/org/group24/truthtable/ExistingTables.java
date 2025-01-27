@@ -1,0 +1,76 @@
+package org.group24.truthtable;
+
+import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import model.Table;
+
+public class ExistingTables extends Application {
+    VBox basePane;
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        basePane = new VBox();
+        setPaneSettings();
+        addNodes();
+        Scene scene = new Scene(basePane);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
+    }
+
+    private void setPaneSettings() {
+        basePane.setAlignment(Pos.CENTER);
+        basePane.setPrefSize(400, 600);
+        basePane.setSpacing(10);
+        basePane.getStylesheets().add(ApplicationRunner.class.getResource("CSS/Style.css").toExternalForm());
+    }
+
+    private void addNodes() {
+        HBox row;
+        Label name;
+        for (int i = 0 ; i < Table.getTableNum(); i++) {
+            row = new HBox();
+            row.setAlignment(Pos.CENTER);
+            row.setSpacing(10);
+            name = new Label("Table" + i);
+            row.getChildren().add(name);
+            basePane.getChildren().add(row);
+            Button showButton = new Button("Show");
+            Button removeButton = new Button("Remove");
+            row.getChildren().addAll(showButton, removeButton);
+            int finalI = i;
+            showButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    ShowTable showTable = new ShowTable(finalI);
+                    try {
+                        showTable.start(App.getStage());
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+        }
+        Button backButton = new Button("Back");
+        basePane.getChildren().add(backButton);
+        backButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                MainMenu mainMenu = new MainMenu();
+                try {
+                    mainMenu.start(App.getStage());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+    }
+}

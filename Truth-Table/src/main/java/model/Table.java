@@ -69,4 +69,8 @@ public class Table {
     public static int getTableNum() {
         return allTables.size();
     }
+
+    public ArrayList<VarLed> getOutputs() {
+        return outputs;
+    }
 }

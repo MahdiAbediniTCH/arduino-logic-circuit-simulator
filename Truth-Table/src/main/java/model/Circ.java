@@ -14,10 +14,10 @@ public class Circ {
 
     static {
         for (int i = 0; i < LEDNUM; i++) {
-            leds.add(new VarLed(true));
+            leds.add(new VarLed(true, i));
         }
         for (int i = 0; i < VARS; i++) {
-            variables.add(new VarLed(false));
+            variables.add(new VarLed(false, i));
         }
     }
 

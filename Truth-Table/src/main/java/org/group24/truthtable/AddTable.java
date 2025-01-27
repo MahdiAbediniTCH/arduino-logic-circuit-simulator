@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.stage.Stage;
 import model.Circ;
@@ -14,7 +13,7 @@ import model.VarLed;
 
 import java.util.ArrayList;
 
-public class NewTable extends Application {
+public class AddTable extends Application {
     @FXML
     private CheckBox input0, input1, input2, input3, input4, input5, input6, input7;
     @FXML
