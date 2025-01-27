@@ -15,7 +15,6 @@ public class CircController {
     private static void evaluateVarLed(VarLed varLed) {
         if (varLed.isEvaluated())
             return;
-        varLed.setEvaluated(true);
         if (varLed.getOutputIn() == -1) {
             if (varLed.IS_LED)
                 for (int i = 0; i < Circ.STATE_NUM; i++)
@@ -45,6 +44,7 @@ public class CircController {
                 varLed.setStatus(pseudoStatus[sum], i);
             }
         }
+        varLed.setEvaluated(true);
     }
 
     public static void prepareLEDs() {
@@ -60,7 +60,6 @@ public class CircController {
                     Objects.requireNonNull(Circ.getLed(1)).getStatus(i) * 4 +
                     Objects.requireNonNull(Circ.getLed(2)).getStatus(i) * 2 +
                     Objects.requireNonNull(Circ.getLed(3)).getStatus(i);
-            System.out.println("output for " + i +" is: "+ Integer.toHexString(temp));
             sb.append(Integer.toHexString(temp));
         }
         String str = sb.toString();

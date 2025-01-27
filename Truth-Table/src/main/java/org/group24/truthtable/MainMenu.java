@@ -37,10 +37,12 @@ public class MainMenu extends Application {
     }
 
     public void export() throws IOException, InterruptedException {
-        if (ledDef.isSelected()) Circ.setDefaultLed(1);
+        if (ledDef.isSelected()) {Circ.setDefaultLed(1);
+            System.out.println("hello");}
         else Circ.setDefaultLed(0);
         if (varDef.isSelected()) Circ.setDefaultVariable(1);
         else Circ.setDefaultVariable(0);
+        Circ.resetAllEvals();
         CircController.prepareLEDs();
         CircController.writeInFile();
         CircController.sendThroughSerial();
