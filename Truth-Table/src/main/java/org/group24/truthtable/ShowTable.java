@@ -18,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import model.Circ;
 import model.Table;
 import model.VarLed;
 
@@ -105,6 +106,7 @@ public class ShowTable extends Application {
                     public void handle(MouseEvent mouseEvent) {
                         finalLabel.setText(Integer.toString(1 - Integer.parseInt(finalLabel.getText())));
                         Table.getFromAllTables(tableNumber).changeState(finalVarled, finalI);
+                        Circ.resetAllEvals();
                     }
                 });
                 label.setOnMouseEntered(new EventHandler<MouseEvent>() {

@@ -1,12 +1,21 @@
 package org.group24.truthtable;
 
+import controller.CircController;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.stage.Stage;
+import model.Circ;
 import model.Table;
 
+import java.io.IOException;
+
 public class MainMenu extends Application {
+    @FXML
+    CheckBox ledDef, varDef;
+
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(ApplicationRunner.class.getResource("FXML/MainMenu.fxml"));
@@ -25,6 +34,15 @@ public class MainMenu extends Application {
     public void goToExistingTablesMenu() throws Exception {
         ExistingTables existingTables = new ExistingTables();
         existingTables.start(App.getStage());
-        System.out.println(Table.getTableNum());
+    }
+
+    public void export() throws IOException, InterruptedException {
+        if (ledDef.isSelected()) Circ.setDefaultLed(1);
+        else Circ.setDefaultLed(0);
+        if (varDef.isSelected()) Circ.setDefaultVariable(1);
+        else Circ.setDefaultVariable(0);
+        CircController.prepareLEDs();
+        CircController.writeInFile();
+        CircController.sendThroughSerial();
     }
 }

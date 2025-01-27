@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="600.0" maxWidth="400.0" minHeight="600.0" minWidth="400.0" prefHeight="600.0" prefWidth="400.0" stylesheets="@../CSS/Style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.group24.truthtable.MainMenu">
+<AnchorPane maxHeight="600.0" maxWidth="400.0" minHeight="600.0" minWidth="400.0" prefHeight="600.0" prefWidth="400.0" stylesheets="@../CSS/Style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.group24.truthtable.MainMenu">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -28,7 +28,17 @@
         <children>
             <Button fx:id="addTable" mnemonicParsing="false" onMouseClicked="#goToAddTableMenu" text="Add Table" />
             <Button fx:id="currentTable" mnemonicParsing="false" onMouseClicked="#goToExistingTablesMenu" text="Existing Tables" />
-            <Button fx:id="export" mnemonicParsing="false" text="Export" />
+         <VBox alignment="CENTER" prefHeight="61.0" prefWidth="179.0">
+            <children>
+                  <Button fx:id="export" mnemonicParsing="false" text="Export" onMouseClicked="#export" />
+               <HBox alignment="CENTER" prefHeight="27.0" prefWidth="179.0" spacing="10.0">
+                  <children>
+                     <CheckBox mnemonicParsing="false" text="LED def" fx:id="ledDef" />
+                     <CheckBox mnemonicParsing="false" text="Var def" fx:id="varDef" />
+                  </children>
+               </HBox>
+            </children>
+         </VBox>
         </children>
     </VBox>
 </AnchorPane>
