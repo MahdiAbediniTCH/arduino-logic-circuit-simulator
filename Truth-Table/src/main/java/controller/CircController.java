@@ -18,6 +18,8 @@ import java.util.Objects;
 
 public class CircController {
     public void evaluateVarLed(VarLed varLed) {
+        if (varLed.isEvaluated())
+            return;
         varLed.setEvaluated(true);
         if (varLed.getOutputIn() == -1) {
             if (varLed.IS_LED)
@@ -31,13 +33,22 @@ public class CircController {
             int[] pseudoStatus = table.getOutPutStatus(varLed);
             ArrayList<Integer> varNums = table.getVarNumbers();
             ArrayList<Integer> switchNums = table.getSwitchNumbers();
-            for(int i : varNums) {
+            for (int i : varNums) {
                 evaluateVarLed(Objects.requireNonNull(Circ.getVar(i)));
             }
-            for(int i =0; i < Circ.STATE_NUM; i ++) {
+            for (int i = 0; i < Circ.STATE_NUM; i++) {
                 //TODO : see which element in the array should I check and fill the status for varLed
                 int sum = 0;
-                
+                int bit;
+                for(int num : switchNums) {
+                    bit = (i >> (8-num)) % 2;
+                    sum = sum * 2 + bit;
+                }
+                for(int num : varNums) {
+                    bit = Circ.getVar(i).getStatus(i);
+                    sum = sum * 2 + bit;
+                }
+                varLed.setStatus(pseudoStatus[sum],i);
             }
         }
     }
@@ -48,11 +59,15 @@ public class CircController {
     }
 
     public void writeInFile() {
-//        prepareLEDs();
         // TODO : generate proper hex string for data.bin
+        int temp;
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 64; i++) {
-            sb.append("1234");  // Sample data
+        for (int i = 0; i < 256; i++) {
+            temp = Objects.requireNonNull(Circ.getLed(0)).getStatus(i) * 8 +
+                    Objects.requireNonNull(Circ.getLed(1)).getStatus(i) * 4 +
+                    Objects.requireNonNull(Circ.getLed(2)).getStatus(i) * 2 +
+                    Objects.requireNonNull(Circ.getLed(3)).getStatus(i);
+            sb.append(Integer.toHexString(temp));
         }
         String str = sb.toString();
         byte[] byteArray = str.getBytes();
@@ -66,6 +81,7 @@ public class CircController {
             e.printStackTrace();
         }
     }
+
     public void sendThroughSerial() throws IOException, InterruptedException {
         URL url = App.class.getResource("serial/serial_write.py");
         URL dir_url = App.class.getResource("serial");
