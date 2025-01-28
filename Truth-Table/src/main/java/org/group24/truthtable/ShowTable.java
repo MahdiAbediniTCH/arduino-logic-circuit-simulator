@@ -9,6 +9,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -22,6 +23,7 @@ import org.w3c.dom.css.RGBColor;
 public class ShowTable extends Application {
     int tableNumber;
     VBox basePane;
+    ScrollPane scrollPane;
     GridPane table;
 
     public ShowTable(int tableNumber) {
@@ -41,7 +43,7 @@ public class ShowTable extends Application {
 
     private void setBasePaneSettings() {
         basePane.setPrefSize(400, 600);
-        Image image = new Image(ApplicationRunner.class.getResource("Images/ExistingTablesMenu.jpg").toExternalForm()
+        Image image = new Image(ApplicationRunner.class.getResource("Images/ShowTableMenu.jpg").toExternalForm()
                 , 400, 600, false, false);
         basePane.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
@@ -51,11 +53,18 @@ public class ShowTable extends Application {
     }
 
     private void addNodes() {
+        scrollPane = new ScrollPane();
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setMaxSize(350, 300);
+        basePane.getChildren().add(scrollPane);
+        table = new GridPane();
+        table.setAlignment(Pos.CENTER);
+        scrollPane.setContent(table);
         int numberOfSwitches = Table.getFromAllTables(tableNumber).getSwitchNumbers().size();
         int numberOfVars = Table.getFromAllTables(tableNumber).getVarNumbers().size();
         int numberOfOutputs = Table.getFromAllTables(tableNumber).getOutputs().size();
-        table = new GridPane();
-        table.setAlignment(Pos.CENTER);
         Label label;
         for (int i = 0; i < numberOfSwitches; i++) {
             label = new Label("A" + Table.getFromAllTables(tableNumber).getSwitchNumbers().get(i));
@@ -103,7 +112,6 @@ public class ShowTable extends Application {
                 int number = Table.getFromAllTables(tableNumber).getOutPutStatus(varled)[i];
                 label = new Label(Integer.toString(number));
                 label.setAlignment(Pos.CENTER);
-                label.setStyle("-fx-background-radius: 5");
                 GridPane.setRowIndex(label, i + 1);
                 GridPane.setColumnIndex(label, j + numberOfSwitches + numberOfVars);
                 GridPane.setHalignment(label, HPos.CENTER);
@@ -135,7 +143,6 @@ public class ShowTable extends Application {
                 });
             }
         }
-        basePane.getChildren().add(table);
         Button backButton = new Button("Back");
         backButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override

@@ -29,7 +29,7 @@ public class AddTable extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(ApplicationRunner.class.getResource("FXML/NewTable.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ApplicationRunner.class.getResource("FXML/AddTable.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Logic Circuit Simulator");
         stage.setScene(scene);
@@ -81,6 +81,8 @@ public class AddTable extends Application {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setContentText("Are you sure?");
+        alert.getDialogPane().getStylesheets().
+                add(ApplicationRunner.class.getResource("CSS/Confirmation.css").toExternalForm());
         alert.showAndWait();
         if (!alert.getResult().getButtonData().isCancelButton()) {
             Table.createTable(switches, varIn, varOut);

@@ -1,0 +1,45 @@
+.header {
+    -fx-text-fill: #000000;
+    -fx-font-family: "Roboto Slab SemiBold";
+    -fx-font-size: 18px;
+    -fx-font-weight: bolder;
+}
+
+Label {
+    -fx-text-fill: #000000;
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 12px;
+    -fx-font-weight: bolder;
+    -fx-label-padding: 5px;
+}
+
+Button {
+    -fx-border-color: #ECA5A5;
+    -fx-border-width: 1;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: black;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+Button:hover {
+    -fx-background-color: #F5C1C1;
+}
+
+CheckBox {
+    -fx-border-color: transparent;
+    -fx-border-width: 1;
+    -fx-background-color: Transparent;
+    -fx-text-fill: black;
+    -fx-background-radius: 3;
+    -fx-border-radius: 3;
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-fit-to-width: 50px;
+}

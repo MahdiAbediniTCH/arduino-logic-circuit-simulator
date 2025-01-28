@@ -1,0 +1,46 @@
+.dialog-pane {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 7;
+    -fx-border-color: #2a9df4;
+    -fx-border-width: 0.5;
+    -fx-border-radius: 7;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #2a9df4;
+    -fx-background-radius: 7;
+    -fx-font-family: "Roboto Slab SemiBold";
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+    -fx-padding: 10;
+    -fx-border-radius: 7;
+}
+
+.dialog-pane .content {
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+    -fx-padding: 10;
+}
+
+.dialog-pane .button-bar {
+    -fx-background-color: #e0e0e0;
+    -fx-padding: 10;
+}
+
+Button {
+    -fx-border-color: #3399FF;
+    -fx-border-width: 1;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: black;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+Button:hover {
+    -fx-background-color: #0080FF;
+}
