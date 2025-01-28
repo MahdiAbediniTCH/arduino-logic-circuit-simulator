@@ -8,6 +8,7 @@ public class ApplicationRunner extends Application {
     public void start(Stage stage) throws Exception {
         MainMenu mainMenu = new MainMenu();
         App.setStage(stage);
+        stage.setResizable(false);
         mainMenu.start(stage);
     }
 

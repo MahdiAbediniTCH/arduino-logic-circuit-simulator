@@ -7,9 +7,9 @@ Label {
 }
 
 Button {
-    -fx-border-color: #6CC469;
+    -fx-border-color: #45B7E1;
     -fx-border-width: 1;
-    -fx-background-color: white;
+    -fx-background-color: #ffffff;
     -fx-text-fill: black;
     -fx-background-radius: 15;
     -fx-border-radius: 15;
@@ -20,5 +20,5 @@ Button {
 }
 
 Button:hover {
-    -fx-background-color: #9AF696;
+    -fx-background-color: #96CFE4;
 }

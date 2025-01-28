@@ -38,16 +38,26 @@ public class MainMenu extends Application {
     }
 
     public void export() throws IOException, InterruptedException {
-        if (ledDef.isSelected()) {Circ.setDefaultLed(1);
-            System.out.println("hello");}
-        else Circ.setDefaultLed(0);
+        if (Table.getTableNum() == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("There is not any table!");
+            alert.getDialogPane().getStylesheets().
+                    add(ApplicationRunner.class.getResource("CSS/Error.css").toExternalForm());
+            alert.showAndWait();
+        } else if (ledDef.isSelected()) {
+            Circ.setDefaultLed(1);
+            System.out.println("hello");
+        } else Circ.setDefaultLed(0);
         if (varDef.isSelected()) Circ.setDefaultVariable(1);
         else Circ.setDefaultVariable(0);
         Circ.resetAllEvals();
-        if(!CircController.prepareLEDs()){
+        if (!CircController.prepareLEDs()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setContentText("You have a Loop in your variable definitions!");
+            alert.getDialogPane().getStylesheets().
+                    add(ApplicationRunner.class.getResource("CSS/Error.css").toExternalForm());
             alert.showAndWait();
         }
         CircController.writeInFile();
