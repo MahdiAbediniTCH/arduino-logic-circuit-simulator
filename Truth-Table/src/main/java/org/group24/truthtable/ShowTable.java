@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 import model.Circ;
 import model.Table;
 import model.VarLed;
+import org.w3c.dom.css.RGBColor;
 
 public class ShowTable extends Application {
     int tableNumber;
@@ -57,17 +59,19 @@ public class ShowTable extends Application {
         Label label;
         for (int i = 0; i < numberOfSwitches; i++) {
             label = new Label("A" + Table.getFromAllTables(tableNumber).getSwitchNumbers().get(i));
+            label.setStyle("-fx-text-fill: blue");
+            label.setAlignment(Pos.CENTER);
             GridPane.setRowIndex(label, 0);
             GridPane.setColumnIndex(label, i);
-            label.setAlignment(Pos.CENTER);
             GridPane.setHalignment(label, HPos.CENTER);
             table.getChildren().add(label);
         }
         for (int i = 0; i < numberOfVars; i++) {
             label = new Label("C" + Table.getFromAllTables(tableNumber).getVarNumbers().get(i));
+            label.setStyle("-fx-text-fill: blue");
+            label.setAlignment(Pos.CENTER);
             GridPane.setRowIndex(label, 0);
             GridPane.setColumnIndex(label, i + numberOfSwitches);
-            label.setAlignment(Pos.CENTER);
             GridPane.setHalignment(label, HPos.CENTER);
             table.getChildren().add(label);
         }
@@ -76,9 +80,10 @@ public class ShowTable extends Application {
             varled = Table.getFromAllTables(tableNumber).getOutputs().get(i);
             if (varled.IS_LED) label = new Label("LED" + varled.NUMBER);
             else label = new Label("C" + varled.NUMBER);
+            label.setStyle("-fx-text-fill: red");
+            label.setAlignment(Pos.CENTER);
             GridPane.setRowIndex(label, 0);
             GridPane.setColumnIndex(label, i + numberOfSwitches + numberOfVars);
-            label.setAlignment(Pos.CENTER);
             GridPane.setHalignment(label, HPos.CENTER);
             table.getChildren().add(label);
         }
@@ -97,9 +102,10 @@ public class ShowTable extends Application {
                 varled = Table.getFromAllTables(tableNumber).getOutputs().get(j);
                 int number = Table.getFromAllTables(tableNumber).getOutPutStatus(varled)[i];
                 label = new Label(Integer.toString(number));
+                label.setAlignment(Pos.CENTER);
+                label.setStyle("-fx-background-radius: 5");
                 GridPane.setRowIndex(label, i + 1);
                 GridPane.setColumnIndex(label, j + numberOfSwitches + numberOfVars);
-                label.setAlignment(Pos.CENTER);
                 GridPane.setHalignment(label, HPos.CENTER);
                 table.getChildren().add(label);
                 final Label finalLabel = label;
@@ -116,13 +122,15 @@ public class ShowTable extends Application {
                 label.setOnMouseEntered(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
-                        finalLabel.setBackground(Background.fill(Color.GRAY));
+                        finalLabel.setBackground(Background.fill(Color.web("99FF99")));
+                        finalLabel.setCursor(Cursor.HAND);
                     }
                 });
                 label.setOnMouseExited(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
                         finalLabel.setBackground(Background.fill(Color.TRANSPARENT));
+                        finalLabel.setCursor(Cursor.DEFAULT);
                     }
                 });
             }

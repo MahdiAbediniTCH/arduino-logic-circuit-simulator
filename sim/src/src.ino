@@ -19,6 +19,34 @@ byte hexToByte(char hex) {
     val = 0b01010101; // error indicator
   return val;
 }
+const uint8_t digitTable[] = {
+  0b11000000,
+  0b11111001,
+  0b10100100,
+  0b10110000,
+  0b10011001,
+  0b10010010,
+  0b10000010,
+  0b11111000,
+  0b10000000,
+  0b10010000,
+};
+const int LATCH_PIN = A1;  // 74HC595 pin 12
+const int DATA_PIN = A0;  // 74HC595pin 14
+const int CLOCK_PIN = A2;  // 74HC595 pin 11
+
+void displayScore(int number) {
+  int high = number % 100 / 10;
+  int low = number % 10;
+  sendScore(high ? digitTable[high] : 0xff, digitTable[low]);
+}
+
+void sendScore(uint8_t high, uint8_t low) {
+  digitalWrite(LATCH_PIN, LOW);
+  shiftOut(DATA_PIN, CLOCK_PIN, MSBFIRST, low);
+  shiftOut(DATA_PIN, CLOCK_PIN, MSBFIRST, high);
+  digitalWrite(LATCH_PIN, HIGH);
+}
 
 void setup() {
   Serial.begin(9600);
@@ -30,13 +58,19 @@ void setup() {
   for (byte i = 0; i < ledCount; i++) {
     pinMode(ledPins[i], OUTPUT);
   }
+  pinMode(LATCH_PIN, OUTPUT);
+  pinMode(CLOCK_PIN, OUTPUT);
+  pinMode(DATA_PIN, OUTPUT);
 }
 
 
 void loop()
 {
+
+
   unsigned inputState = getInputState();
   unsigned outputState = getOutputState(inputState);
+  displayScore(outputState);
   for (byte i = 0; i < ledCount; i++) {
     bool s = (outputState >> i) & 1;
     setOutput(i, s);
