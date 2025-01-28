@@ -35,13 +35,13 @@ const int LATCH_PIN = A1;  // 74HC595 pin 12
 const int DATA_PIN = A0;  // 74HC595pin 14
 const int CLOCK_PIN = A2;  // 74HC595 pin 11
 
-void displayScore(int number) {
+void displayNumber(int number) {
   int high = number % 100 / 10;
   int low = number % 10;
-  sendScore(high ? digitTable[high] : 0xff, digitTable[low]);
+  sendNumber(high ? digitTable[high] : 0xff, digitTable[low]);
 }
 
-void sendScore(uint8_t high, uint8_t low) {
+void sendNumber(uint8_t high, uint8_t low) {
   digitalWrite(LATCH_PIN, LOW);
   shiftOut(DATA_PIN, CLOCK_PIN, MSBFIRST, low);
   shiftOut(DATA_PIN, CLOCK_PIN, MSBFIRST, high);
@@ -70,7 +70,7 @@ void loop()
 
   unsigned inputState = getInputState();
   unsigned outputState = getOutputState(inputState);
-  displayScore(outputState);
+  displayNumber(outputState);
   for (byte i = 0; i < ledCount; i++) {
     bool s = (outputState >> i) & 1;
     setOutput(i, s);
