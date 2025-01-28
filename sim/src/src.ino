@@ -52,7 +52,7 @@ void loop()
 unsigned getInputState() {
   unsigned state = 0;
   for (byte i = 0; i < switchCount; i++) {
-    unsigned s = digitalRead(switchPins[i]) << i;
+    unsigned s = (!digitalRead(switchPins[i])) << i; // inverting input so it looks better
     state |= s;
   }
   return state;

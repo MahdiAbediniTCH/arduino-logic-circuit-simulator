@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.stage.Stage;
 import model.Circ;
@@ -37,11 +38,18 @@ public class MainMenu extends Application {
     }
 
     public void export() throws IOException, InterruptedException {
-        if (ledDef.isSelected()) Circ.setDefaultLed(1);
+        if (ledDef.isSelected()) {Circ.setDefaultLed(1);
+            System.out.println("hello");}
         else Circ.setDefaultLed(0);
         if (varDef.isSelected()) Circ.setDefaultVariable(1);
         else Circ.setDefaultVariable(0);
-        CircController.prepareLEDs();
+        Circ.resetAllEvals();
+        if(!CircController.prepareLEDs()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("You have a Loop in your variable definitions!");
+            alert.showAndWait();
+        }
         CircController.writeInFile();
         CircController.sendThroughSerial();
     }

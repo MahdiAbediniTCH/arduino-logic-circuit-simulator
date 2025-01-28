@@ -12,10 +12,13 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class CircController {
-    private static void evaluateVarLed(VarLed varLed) {
+    private static int count = 0;
+    private static boolean evaluateVarLed(VarLed varLed) {
         if (varLed.isEvaluated())
-            return;
-        varLed.setEvaluated(true);
+            return true;
+        count ++;
+        if(count > 20)
+            return false;
         if (varLed.getOutputIn() == -1) {
             if (varLed.IS_LED)
                 for (int i = 0; i < Circ.STATE_NUM; i++)
@@ -29,7 +32,8 @@ public class CircController {
             ArrayList<Integer> varNums = table.getVarNumbers();
             ArrayList<Integer> switchNums = table.getSwitchNumbers();
             for (int i : varNums) {
-                evaluateVarLed(Objects.requireNonNull(Circ.getVar(i)));
+                if(!evaluateVarLed(Objects.requireNonNull(Circ.getVar(i))))
+                    return false;
             }
             for (int i = 0; i < Circ.STATE_NUM; i++) {
                 int sum = 0;
@@ -45,11 +49,17 @@ public class CircController {
                 varLed.setStatus(pseudoStatus[sum], i);
             }
         }
+        varLed.setEvaluated(true);
+        return true;
     }
 
-    public static void prepareLEDs() {
-        for (int i = 0; i < Circ.LEDNUM; i++)
-            evaluateVarLed(Objects.requireNonNull(Circ.getLed(i)));
+    public static boolean prepareLEDs() {
+        for (int i = 0; i < Circ.LEDNUM; i++) {
+            count = 0;
+            if (!evaluateVarLed(Objects.requireNonNull(Circ.getLed(i))))
+                return false;
+        }
+        return true;
     }
 
     public static void writeInFile() {
@@ -60,7 +70,6 @@ public class CircController {
                     Objects.requireNonNull(Circ.getLed(1)).getStatus(i) * 4 +
                     Objects.requireNonNull(Circ.getLed(2)).getStatus(i) * 2 +
                     Objects.requireNonNull(Circ.getLed(3)).getStatus(i);
-            System.out.println("output for " + i +" is: "+ Integer.toHexString(temp));
             sb.append(Integer.toHexString(temp));
         }
         String str = sb.toString();
