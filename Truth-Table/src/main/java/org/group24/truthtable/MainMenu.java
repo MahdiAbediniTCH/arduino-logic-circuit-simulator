@@ -38,17 +38,8 @@ public class MainMenu extends Application {
     }
 
     public void export() throws IOException, InterruptedException {
-        if (Table.getTableNum() == 0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setContentText("There is not any table!");
-            alert.getDialogPane().getStylesheets().
-                    add(ApplicationRunner.class.getResource("CSS/Error.css").toExternalForm());
-            alert.showAndWait();
-        } else if (ledDef.isSelected()) {
-            Circ.setDefaultLed(1);
-            System.out.println("hello");
-        } else Circ.setDefaultLed(0);
+        if (ledDef.isSelected()) Circ.setDefaultLed(1);
+        else Circ.setDefaultLed(0);
         if (varDef.isSelected()) Circ.setDefaultVariable(1);
         else Circ.setDefaultVariable(0);
         Circ.resetAllEvals();
@@ -59,8 +50,15 @@ public class MainMenu extends Application {
             alert.getDialogPane().getStylesheets().
                     add(ApplicationRunner.class.getResource("CSS/Error.css").toExternalForm());
             alert.showAndWait();
+            return;
         }
         CircController.writeInFile();
         CircController.sendThroughSerial();
+        Alert exportAlert = new Alert(Alert.AlertType.INFORMATION);
+        exportAlert.setTitle("Export done!");
+        exportAlert.setContentText("The circuit on the board is changed according to your input!");
+        exportAlert.getDialogPane().getStylesheets().
+                add(ApplicationRunner.class.getResource("CSS/Confirmation.css").toExternalForm());
+        exportAlert.showAndWait();
     }
 }
