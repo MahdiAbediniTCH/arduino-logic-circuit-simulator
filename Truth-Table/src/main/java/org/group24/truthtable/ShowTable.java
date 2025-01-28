@@ -2,21 +2,16 @@ package org.group24.truthtable;
 
 import controller.TableController;
 import javafx.application.Application;
-import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseDragEvent;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import model.Circ;
 import model.Table;
@@ -26,7 +21,6 @@ public class ShowTable extends Application {
     int tableNumber;
     VBox basePane;
     GridPane table;
-//    TableView<ObservableList<Label>> table;
 
     public ShowTable(int tableNumber) {
         this.tableNumber = tableNumber;
@@ -44,10 +38,14 @@ public class ShowTable extends Application {
     }
 
     private void setBasePaneSettings() {
-        basePane.setPrefSize(600, 600);
+        basePane.setPrefSize(400, 600);
+        Image image = new Image(ApplicationRunner.class.getResource("Images/ExistingTablesMenu.jpg").toExternalForm()
+                , 400, 600, false, false);
+        basePane.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
         basePane.setSpacing(20);
         basePane.setAlignment(Pos.CENTER);
-        basePane.getStylesheets().add(ApplicationRunner.class.getResource("CSS/Style.css").toExternalForm());
+        basePane.getStylesheets().add(ApplicationRunner.class.getResource("CSS/ShowTable.css").toExternalForm());
     }
 
     private void addNodes() {
@@ -62,6 +60,7 @@ public class ShowTable extends Application {
             GridPane.setRowIndex(label, 0);
             GridPane.setColumnIndex(label, i);
             label.setAlignment(Pos.CENTER);
+            GridPane.setHalignment(label, HPos.CENTER);
             table.getChildren().add(label);
         }
         for (int i = 0; i < numberOfVars; i++) {
@@ -69,6 +68,7 @@ public class ShowTable extends Application {
             GridPane.setRowIndex(label, 0);
             GridPane.setColumnIndex(label, i + numberOfSwitches);
             label.setAlignment(Pos.CENTER);
+            GridPane.setHalignment(label, HPos.CENTER);
             table.getChildren().add(label);
         }
         VarLed varled;
@@ -79,6 +79,7 @@ public class ShowTable extends Application {
             GridPane.setRowIndex(label, 0);
             GridPane.setColumnIndex(label, i + numberOfSwitches + numberOfVars);
             label.setAlignment(Pos.CENTER);
+            GridPane.setHalignment(label, HPos.CENTER);
             table.getChildren().add(label);
         }
         int[] binaryForm;
@@ -89,6 +90,7 @@ public class ShowTable extends Application {
                 GridPane.setRowIndex(label, i + 1);
                 GridPane.setColumnIndex(label, j);
                 label.setAlignment(Pos.CENTER);
+                GridPane.setHalignment(label, HPos.CENTER);
                 table.getChildren().add(label);
             }
             for (int j = 0; j < numberOfOutputs; j++) {
@@ -97,6 +99,8 @@ public class ShowTable extends Application {
                 label = new Label(Integer.toString(number));
                 GridPane.setRowIndex(label, i + 1);
                 GridPane.setColumnIndex(label, j + numberOfSwitches + numberOfVars);
+                label.setAlignment(Pos.CENTER);
+                GridPane.setHalignment(label, HPos.CENTER);
                 table.getChildren().add(label);
                 final Label finalLabel = label;
                 final VarLed finalVarled = varled;

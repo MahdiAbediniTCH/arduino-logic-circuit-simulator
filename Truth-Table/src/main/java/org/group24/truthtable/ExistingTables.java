@@ -9,9 +9,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 import model.Circ;
 import model.Table;
 
@@ -32,8 +32,12 @@ public class ExistingTables extends Application {
     private void setPaneSettings() {
         basePane.setAlignment(Pos.CENTER);
         basePane.setPrefSize(400, 600);
+        Image image = new Image(ApplicationRunner.class.getResource("Images/ShowTableMenu.jpg").toExternalForm()
+                ,400, 600, false, false);
+        basePane.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
         basePane.setSpacing(10);
-        basePane.getStylesheets().add(ApplicationRunner.class.getResource("CSS/Style.css").toExternalForm());
+        basePane.getStylesheets().add(ApplicationRunner.class.getResource("CSS/MainMenu.css").toExternalForm());
     }
 
     private void addNodes() {

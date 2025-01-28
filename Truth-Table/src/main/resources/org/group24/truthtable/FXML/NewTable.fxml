@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane maxHeight="340.0" maxWidth="594.0" minHeight="340.0" minWidth="594.0" prefHeight="340.0" prefWidth="594.0" stylesheets="@../CSS/Style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.group24.truthtable.AddTable">
+<AnchorPane maxHeight="340.0" maxWidth="594.0" minHeight="340.0" minWidth="594.0" prefHeight="340.0" prefWidth="594.0" stylesheets="@../CSS/MainMenu.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.group24.truthtable.AddTable">
    <children>
       <ImageView fitHeight="340.0" fitWidth="595.0" pickOnBounds="true" preserveRatio="true">
          <image>
