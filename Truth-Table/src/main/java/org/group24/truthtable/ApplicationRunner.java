@@ -1,6 +1,7 @@
 package org.group24.truthtable;
 
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class ApplicationRunner extends Application {
@@ -9,6 +10,7 @@ public class ApplicationRunner extends Application {
         MainMenu mainMenu = new MainMenu();
         App.setStage(stage);
         stage.setResizable(false);
+        stage.getIcons().add(new Image(ApplicationRunner.class.getResource("Images/Icon.png").toExternalForm()));
         mainMenu.start(stage);
     }
 
