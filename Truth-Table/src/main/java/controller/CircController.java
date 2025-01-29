@@ -89,7 +89,7 @@ public class CircController {
         URL url = App.class.getResource("serial/serial_write.py");
         URL dir_url = App.class.getResource("serial");
         ProcessBuilder processBuilder = new ProcessBuilder("python", url.getFile().substring(1));
-        File dir = new File(dir_url.getFile());
+        File dir = new File(dir_url.getPath());
         processBuilder.directory(dir);
         processBuilder.redirectErrorStream(true);
         Process process = processBuilder.start();
