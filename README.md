@@ -24,3 +24,6 @@ pio run
 ## Simulate the project
 
 To simulate this project, install [Wokwi for VS Code](https://marketplace.visualstudio.com/items?itemName=wokwi.wokwi-vscode). Open the project directory in Visual Studio Code, press **F1** and select "Wokwi: Start Simulator".
+
+## Run user interface
+In order to use GUI to upload a circuit onto the board, compile and run ```Truth-Table/src/main/java/org/group24/truthtable/Main.java```.
