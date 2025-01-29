@@ -53,12 +53,21 @@ public class MainMenu extends Application {
             return;
         }
         CircController.writeInFile();
-        CircController.sendThroughSerial();
-        Alert exportAlert = new Alert(Alert.AlertType.INFORMATION);
-        exportAlert.setTitle("Export done!");
-        exportAlert.setContentText("The circuit on the board is changed according to your input!");
-        exportAlert.getDialogPane().getStylesheets().
-                add(ApplicationRunner.class.getResource("CSS/Confirmation.css").toExternalForm());
-        exportAlert.showAndWait();
+        int exitCode = CircController.sendThroughSerial();
+        if (exitCode != 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("There has been an error connecting to serial. Make sure the simulation is running");
+            alert.getDialogPane().getStylesheets().
+                    add(ApplicationRunner.class.getResource("CSS/Error.css").toExternalForm());
+            alert.showAndWait();
+        } else {
+            Alert exportAlert = new Alert(Alert.AlertType.INFORMATION);
+            exportAlert.setTitle("Export done!");
+            exportAlert.setContentText("The circuit on the board is changed according to your input!");
+            exportAlert.getDialogPane().getStylesheets().
+                    add(ApplicationRunner.class.getResource("CSS/Confirmation.css").toExternalForm());
+            exportAlert.showAndWait();
+        }
     }
 }

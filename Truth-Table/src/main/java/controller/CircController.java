@@ -85,7 +85,7 @@ public class CircController {
         }
     }
 
-    public static void sendThroughSerial() throws IOException, InterruptedException {
+    public static int sendThroughSerial() throws IOException, InterruptedException {
         URL url = App.class.getResource("serial/serial_write.py");
         URL dir_url = App.class.getResource("serial");
         ProcessBuilder processBuilder = new ProcessBuilder("python", url.getFile().substring(1));
@@ -99,6 +99,7 @@ public class CircController {
             System.out.println(line);
         }
         int exitCode = process.waitFor();
+        return exitCode;
     }
 
 //    public static void main(String[] args) throws IOException, InterruptedException {
