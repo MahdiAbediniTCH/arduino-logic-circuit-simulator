@@ -3,6 +3,9 @@ Computer Structure and Language final project
 
 Main project No.1: Logical circuit simulator on an Arduino/ESP32 chip using JavaFX as a graphical interface for setting truth tables
 
+Links:
+  [GitHub](https://github.com/MahdiAbediniTCH/arduino-logic-circuit-simulator)
+  [Latex](https://latex.sharif.edu/read/gkvnnwtsfzqh)
 ## Dependencies
 1. PlatformIO 6.1.16+
 2. Wokwi simulator VSCode extension
