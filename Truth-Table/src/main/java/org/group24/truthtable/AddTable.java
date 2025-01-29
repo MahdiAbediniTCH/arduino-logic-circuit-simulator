@@ -29,7 +29,7 @@ public class AddTable extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(ApplicationRunner.class.getResource("FXML/AddTable.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("FXML/AddTable.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Logic Circuit Simulator");
         stage.setScene(scene);
@@ -78,11 +78,29 @@ public class AddTable extends Application {
             if (varOuts[i].isSelected())
                 varOut.add(Circ.getVar(i));
         }
+        if (switches.isEmpty() && varIn.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Please select at least one input.");
+            alert.getDialogPane().getStylesheets().
+                    add(Main.class.getResource("CSS/Error.css").toExternalForm());
+            alert.showAndWait();
+            return;
+        }
+        if (varOut.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Please select at least one output.");
+            alert.getDialogPane().getStylesheets().
+                    add(Main.class.getResource("CSS/Error.css").toExternalForm());
+            alert.showAndWait();
+            return;
+        }
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setContentText("Are you sure?");
         alert.getDialogPane().getStylesheets().
-                add(ApplicationRunner.class.getResource("CSS/Confirmation.css").toExternalForm());
+                add(Main.class.getResource("CSS/Confirmation.css").toExternalForm());
         alert.showAndWait();
         if (!alert.getResult().getButtonData().isCancelButton()) {
             Table.createTable(switches, varIn, varOut);

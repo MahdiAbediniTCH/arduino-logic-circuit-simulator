@@ -9,7 +9,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.stage.Stage;
 import model.Circ;
-import model.Table;
 
 import java.io.IOException;
 
@@ -19,7 +18,7 @@ public class MainMenu extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(ApplicationRunner.class.getResource("FXML/MainMenu.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("FXML/MainMenu.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Logic Circuit Simulator");
         stage.setScene(scene);
@@ -48,7 +47,7 @@ public class MainMenu extends Application {
             alert.setTitle("Error");
             alert.setContentText("You have a Loop in your variable definitions!");
             alert.getDialogPane().getStylesheets().
-                    add(ApplicationRunner.class.getResource("CSS/Error.css").toExternalForm());
+                    add(Main.class.getResource("CSS/Error.css").toExternalForm());
             alert.showAndWait();
             return;
         }
@@ -59,14 +58,14 @@ public class MainMenu extends Application {
             alert.setTitle("Error");
             alert.setContentText("There has been an error connecting to serial. Make sure the simulation is running");
             alert.getDialogPane().getStylesheets().
-                    add(ApplicationRunner.class.getResource("CSS/Error.css").toExternalForm());
+                    add(Main.class.getResource("CSS/Error.css").toExternalForm());
             alert.showAndWait();
         } else {
             Alert exportAlert = new Alert(Alert.AlertType.INFORMATION);
             exportAlert.setTitle("Export done!");
             exportAlert.setContentText("The circuit on the board is changed according to your input!");
             exportAlert.getDialogPane().getStylesheets().
-                    add(ApplicationRunner.class.getResource("CSS/Confirmation.css").toExternalForm());
+                    add(Main.class.getResource("CSS/Confirmation.css").toExternalForm());
             exportAlert.showAndWait();
         }
     }

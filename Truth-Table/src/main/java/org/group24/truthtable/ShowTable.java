@@ -18,7 +18,6 @@ import javafx.stage.Stage;
 import model.Circ;
 import model.Table;
 import model.VarLed;
-import org.w3c.dom.css.RGBColor;
 
 public class ShowTable extends Application {
     int tableNumber;
@@ -43,13 +42,13 @@ public class ShowTable extends Application {
 
     private void setBasePaneSettings() {
         basePane.setPrefSize(400, 600);
-        Image image = new Image(ApplicationRunner.class.getResource("Images/ShowTableMenu.jpg").toExternalForm()
+        Image image = new Image(Main.class.getResource("Images/ShowTableMenu.jpg").toExternalForm()
                 , 400, 600, false, false);
         basePane.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
         basePane.setSpacing(20);
         basePane.setAlignment(Pos.CENTER);
-        basePane.getStylesheets().add(ApplicationRunner.class.getResource("CSS/ShowTable.css").toExternalForm());
+        basePane.getStylesheets().add(Main.class.getResource("CSS/ShowTable.css").toExternalForm());
     }
 
     private void addNodes() {

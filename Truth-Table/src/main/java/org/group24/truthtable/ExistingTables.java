@@ -32,12 +32,12 @@ public class ExistingTables extends Application {
     private void setPaneSettings() {
         basePane.setAlignment(Pos.CENTER);
         basePane.setPrefSize(400, 600);
-        Image image = new Image(ApplicationRunner.class.getResource("Images/ExistingTablesMenu.jpg").toExternalForm()
+        Image image = new Image(Main.class.getResource("Images/ExistingTablesMenu.jpg").toExternalForm()
                 , 400, 600, false, false);
         basePane.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
         basePane.setSpacing(10);
-        basePane.getStylesheets().add(ApplicationRunner.class.getResource("CSS/ExistingTables.css").toExternalForm());
+        basePane.getStylesheets().add(Main.class.getResource("CSS/ExistingTables.css").toExternalForm());
     }
 
     private void addNodes() {
@@ -72,7 +72,7 @@ public class ExistingTables extends Application {
                     alert.setTitle("Confirmation");
                     alert.setContentText("Are you sure?");
                     alert.getDialogPane().getStylesheets().
-                            add(ApplicationRunner.class.getResource("CSS/Confirmation.css").toExternalForm());
+                            add(Main.class.getResource("CSS/Confirmation.css").toExternalForm());
                     alert.showAndWait();
                     if (!alert.getResult().getButtonData().isCancelButton()) {
                         TableController.removeTable(finalI);
